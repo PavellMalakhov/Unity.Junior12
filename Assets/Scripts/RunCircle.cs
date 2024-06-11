@@ -2,46 +2,29 @@ using UnityEngine;
 
 public class RunCircle : MonoBehaviour
 {
-    [SerializeField] private float _speed;
     [SerializeField] private Transform _allWayPoints;
-    [SerializeField] private Transform[] _wayPoint;
+    [SerializeField] private Transform[] _wayPoints;
+    [SerializeField] private float _speed;
     [SerializeField] private int _numberWayPoint;
 
-    void Start()
+    public void Awake()
     {
-        _wayPoint = new Transform[_allWayPoints.childCount];
+        _wayPoints = new Transform[_allWayPoints.childCount];
 
         for (int i = 0; i < _allWayPoints.childCount; i++)
         {
-            _wayPoint[i] = _allWayPoints.GetChild(i).GetComponent<Transform>();
+            _wayPoints[i] = _allWayPoints.GetChild(i);
         }
     }
 
     public void Update()
     {
-        Transform wayPoint = _wayPoint[_numberWayPoint];
-
-        transform.position = Vector3.MoveTowards(transform.position, wayPoint.position, _speed * Time.deltaTime);
-
-        if (transform.position == wayPoint.position)
+        if (transform.position == _wayPoints[_numberWayPoint].position)
         {
-            GetNextWayPoint();
-        }
-    }
-
-    public Vector3 GetNextWayPoint()
-    {
-        _numberWayPoint++;
-
-        if (_numberWayPoint == _wayPoint.Length)
-        {
-            _numberWayPoint = 0;
+            _numberWayPoint = (_numberWayPoint + 1) % _wayPoints.Length;
         }
 
-        Vector3 nextWayPoint = _wayPoint[_numberWayPoint].transform.position;
-
-        transform.forward = nextWayPoint - transform.position;
-
-        return nextWayPoint;
+        transform.position = Vector3.MoveTowards(transform.position, _wayPoints[_numberWayPoint].position, _speed * Time.deltaTime);
+        transform.forward = Vector3.MoveTowards(transform.forward, _wayPoints[_numberWayPoint].position - transform.position, _speed * Time.deltaTime);
     }
 }

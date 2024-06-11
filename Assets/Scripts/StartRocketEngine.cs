@@ -5,27 +5,29 @@ using UnityEngine;
 
 public class StartRocketEngine : MonoBehaviour
 {
-    [SerializeField] private GameObject _ParticuleJet;
+    [SerializeField] private Rigidbody _particuleJet;
+    [SerializeField] private Transform _launchFacility;
     [SerializeField] private float _speedGasJet;
     [SerializeField] private float _timeExpirationParticule;
-    [SerializeField] private Transform _launchFacility;
 
-    void Start()
+    public void Start()
     {
         StartCoroutine(GasEmission());
     }
 
-    IEnumerator GasEmission()
+    private IEnumerator GasEmission()
     {
+        var wait = new WaitForSeconds(_timeExpirationParticule);
+
         while (enabled)
         {
             Vector3 jetDirection = (_launchFacility.position - transform.position).normalized;
-            GameObject jet = Instantiate(_ParticuleJet, transform.position + jetDirection, Quaternion.identity);
+            Rigidbody jet = Instantiate(_particuleJet, transform.position + jetDirection, Quaternion.identity);
 
-            jet.GetComponent<Rigidbody>().transform.up = jetDirection;
-            jet.GetComponent<Rigidbody>().velocity = jetDirection * _speedGasJet;
+            jet.transform.up = jetDirection;
+            jet.velocity = jetDirection * _speedGasJet;
 
-            yield return new WaitForSeconds(_timeExpirationParticule);
+            yield return wait;
         }
     }
 }

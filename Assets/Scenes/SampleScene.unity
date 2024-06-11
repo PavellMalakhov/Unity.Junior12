@@ -1216,9 +1216,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee58638863292245aebcbfb1f56d578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 10
   _allWayPoints: {fileID: 1033440792}
-  _wayPoint: []
+  _wayPoints: []
+  _speed: 10
   _numberWayPoint: 0
 --- !u!1 &1945130032
 GameObject:
@@ -1253,10 +1253,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307e1fd4693ca274d81d261570a3d178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ParticuleJet: {fileID: 2751473087522993616, guid: aaecc713b3d4658429af76fbc46b85da, type: 3}
+  _particuleJet: {fileID: 925909919440480238, guid: aaecc713b3d4658429af76fbc46b85da, type: 3}
+  _launchFacility: {fileID: 402343780}
   _speedGasJet: 0
   _timeExpirationParticule: 0
-  _launchFacility: {fileID: 402343780}
 --- !u!54 &1945130034
 Rigidbody:
   m_ObjectHideFlags: 0
