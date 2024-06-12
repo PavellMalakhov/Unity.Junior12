@@ -4,7 +4,7 @@ public class RunCircle : MonoBehaviour
 {
     [SerializeField] private Transform _allWayPoints;
     [SerializeField] private Transform[] _wayPoints;
-    [SerializeField] private float _speed;
+    [SerializeField] private float _speed = 10;
     [SerializeField] private int _numberWayPoint;
 
     public void Awake()
