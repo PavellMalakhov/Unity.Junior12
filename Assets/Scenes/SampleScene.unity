@@ -883,10 +883,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee58638863292245aebcbfb1f56d578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _allWayPoints: {fileID: 1033440792}
+  _containerPoints: {fileID: 1033440792}
   _wayPoints: []
   _speed: 10
-  _numberWayPoint: 0
+  _indexWayPoint: 2
 --- !u!1 &2004971844
 GameObject:
   m_ObjectHideFlags: 0
